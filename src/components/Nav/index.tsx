@@ -10,7 +10,7 @@ export const NavContainer = styled.nav`
     ul {
         list-style: none;
         display: flex;
-        gap: 1rem;
+        gap: 4rem;
     }
     li {
         letter-spacing: 3px;
@@ -35,6 +35,12 @@ export default function Nav() {
                 </li>
                 <li>
                     <Link redirect="/blog" classname="li-nav" name="blog" />
+                </li>
+                <li>
+                    <Link redirect="/about" classname="li-nav" name="about" />
+                </li>
+                <li>
+                    <Link redirect="/contact" classname="li-nav" name="contact" />
                 </li>
 
             </ul>
