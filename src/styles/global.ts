@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box; 
+        /* cursor: none; */
         //scroll 7:50
     }
     body {
