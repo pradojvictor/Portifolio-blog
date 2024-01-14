@@ -2,15 +2,20 @@
 // @ts-nocheck
 import { useState } from "react";
 import styled from "styled-components"
+import SearchInput from "../../components/Search";
+import Post from "../../components/Posts";
 
 export const BlogContaine = styled.div`
     width: 100%;
+    height: 90%;
     background-color: #F9F4EC;
     display: flex;
+    flex-direction: column;
     border-radius: 1rem;
     gap: 2rem; //opcional
-
-    justify-content: center;
+    padding: 2rem;
+    align-items: center;
+    overflow-x: hidden; 
 
     .curso-circle{
         position: fixed;
@@ -44,8 +49,21 @@ export const BlogContaine = styled.div`
 `;
 export const TitleContaine = styled.div`
     width: 15rem;
-    height: 8rem;
+    height: 5rem;
     text-align: center;
+
+`;
+export const InputContain = styled.div`
+    width: 100%;
+`;
+export const PostListContainer = styled.section`
+    width:100%;
+    display: grid;
+    grid-template-columns:  0.8fr 1.2fr 0.7fr 1.3fr;
+    /* grid-template-rows: 2fr 3fr 1fr; */
+    /* grid-template-rows: repeat(min-content, 1fr); */
+    gap: 2rem;
+    //mobile use flex
 
 `;
 
@@ -61,12 +79,24 @@ export function Blog() {
 
     return (
         <BlogContaine>
-            <div style={{left:cursorX + "px", top:cursorY + "px"}} className="cursor curso-circle"></div>
-            <div style={{left:cursorX + "px", top:cursorY + "px"}} className="cursor curso-point"></div>
+            <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-circle"></div>
+            <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-point"></div>
             <TitleContaine >
                 <h1>blog</h1>
                 <p>ola aqui e uma parte do fsfhfhfshfsfshf  jjjjjjjjjjjjjjjjj jjjjjjj fsfhssçilçllçkfjhfs</p>
             </TitleContaine >
+            <InputContain>
+               <SearchInput />
+            </InputContain>
+            <PostListContainer>
+                <Post title="titulo aqui teando aqui" description="descrição aqui descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh " date="00/00/00"/>
+                <Post title="titulo aqui" description="descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh " date="00/00/00"/>
+                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
+                <Post title="titulo aqui descrição aqui aqui aqu f fsfus ugsgh " description="descrição aqui" date="00/00/00"/>
+                <Post title="titulo aqui aqui descrição aqui aqui aqu f aqui descrição aqui aqui aqu f" description="descrição aq aqui descrição aqui aqui aqu faqui descrição aqui aqui aqu faqui descrição aqui aqui aqu faqui descrição aqui aqui aqu fui" date="00/00/00"/>
+                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
+                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
+            </PostListContainer>
         </BlogContaine>
     )
 }
