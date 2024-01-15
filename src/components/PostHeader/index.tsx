@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import ExternalLink from "../ExternalLink";
 import Link from "../Link";
 
 export const HeaderPost = styled.section`
