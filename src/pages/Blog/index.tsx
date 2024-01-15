@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components"
 import SearchInput from "../../components/Search";
 import Post from "../../components/Posts";
+import { api } from "../../lib/axios";
 
 export const BlogContaine = styled.div`
     width: 100%;
@@ -64,10 +65,26 @@ export const PostListContainer = styled.section`
     /* grid-template-rows: repeat(min-content, 1fr); */
     gap: 2rem;
     //mobile use flex
-
 `;
 
+const username = import.meta.env.VITE_GITHUB_USERNAME;
+const repoName = import.meta.env.VITE_GITHUB_REPONAME;
+
+export interface PostProps {
+    title: string,
+    body: string,
+    created_at: string,
+    number: number,
+    html_url: string,
+    user: {
+        login: string,
+    },
+}
+
 export function Blog() {
+
+    const [posts, setPosts] = useState<PostProps[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [cursorX, setCursorX] = useState();
     const [cursorY, setCursorY] = useState();
@@ -76,6 +93,22 @@ export function Blog() {
         setCursorX(e.clientX)
         setCursorY(e.clientY)
     });
+
+    const getPosts = useCallback(async (query: string = "") => {
+        try {
+            setIsLoading(true);
+            const response = await api.get(`/search/issues?q=${query}%20repo:${username}/${repoName}`);
+            console.log(response.data);
+            setPosts(response.data.items);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [posts]);
+
+    useEffect(() => {
+        getPosts();
+    }, [])
+
 
     return (
         <BlogContaine>
@@ -86,16 +119,20 @@ export function Blog() {
                 <p>ola aqui e uma parte do fsfhfhfshfsfshf  jjjjjjjjjjjjjjjjj jjjjjjj fsfhssçilçllçkfjhfs</p>
             </TitleContaine >
             <InputContain>
-               <SearchInput />
+                <SearchInput />
             </InputContain>
             <PostListContainer>
-                <Post title="titulo aqui teando aqui" description="descrição aqui descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh " date="00/00/00"/>
-                <Post title="titulo aqui" description="descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh descrição aqui aqui aqu f fsfus ugsgh " date="00/00/00"/>
-                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
-                <Post title="titulo aqui descrição aqui aqui aqu f fsfus ugsgh " description="descrição aqui" date="00/00/00"/>
-                <Post title="titulo aqui aqui descrição aqui aqui aqu f aqui descrição aqui aqui aqu f" description="descrição aq aqui descrição aqui aqui aqu faqui descrição aqui aqui aqu faqui descrição aqui aqui aqu faqui descrição aqui aqui aqu fui" date="00/00/00"/>
-                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
-                <Post title="titulo aqui" description="descrição aqui" date="00/00/00"/>
+                {posts.map((post) => (
+                    <Post
+                        key={post.number}
+                        title={post.title}
+                        description={post.body}
+                        redirect={post.number}
+                        numberURL={post.number}
+                        date={post.created_at}
+                    />
+                ))}
+
             </PostListContainer>
         </BlogContaine>
     )
