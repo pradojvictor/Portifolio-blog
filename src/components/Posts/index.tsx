@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { relativeDateFormatter } from "../../utils/formatter";
 
 export const PostContainer = styled(Link)`
    width: 100%;
@@ -49,11 +50,15 @@ interface PostsProps {
     description: string;
     date: string;
     redirect: string; //to
+    numberURL: number,
 }
 
 export default function Post(props: PostsProps) {
+
+    const formattedDate = relativeDateFormatter(props.date)
+
     return (
-        <PostContainer to="/post/1">
+        <PostContainer to={`/post/${props.numberURL}`}>
             <div className="containe-div">
                 <div className="title-div">
                     <strong>{props.title}</strong>
@@ -62,7 +67,7 @@ export default function Post(props: PostsProps) {
                     <p>{props.description}</p>
                 </div>
             </div>
-            <span>{props.date}</span>
+            <span>{formattedDate}</span>
         </PostContainer>
     )
 }
