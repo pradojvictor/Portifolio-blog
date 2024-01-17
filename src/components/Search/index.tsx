@@ -1,4 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import styled from "styled-components"
+import * as z from "zod";
 
 const SearchContainer = styled.form`
     position: relative;
@@ -13,7 +16,6 @@ const SearchContainer = styled.form`
     border: 4px solid black;
     padding: 5px;
     background-color: black;
-    
 
     .input-search{
     position: absolute;
@@ -59,18 +61,34 @@ const SearchContainer = styled.form`
     background: white;
     color: black;
 }
-
 `;
 
+const searchFormSchema = z.object({
+    query: z.string()
+})
+
+type SearchFormInput = z.infer<typeof searchFormSchema>;
+
+
 interface SearchProps {
-    text: string;
+    getposts: (query?:string) => Promise<void>, 
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function SearchInput(_props: SearchProps) {
+export default function SearchInput(props: SearchProps) {
+    const { register, handleSubmit } = useForm<SearchFormInput>({
+        resolver: zodResolver(searchFormSchema),
+    });
+    async function handleSearchPosts(data: SearchFormInput) {
+        await props.getposts(data.query);
+    }
     return (
-        <SearchContainer>
-            <input className="input-search" type="search" placeholder="Search here ..."></input>
+        <SearchContainer onSubmit={handleSubmit(handleSearchPosts)}>
+            <input
+                className="input-search"
+                type="text"
+                placeholder="Search here ..."
+                {...register("query")}
+            ></input>
             <button className="input-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
