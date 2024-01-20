@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components"
 import PostHeader from "../../components/PostHeader";
+import { PostProps } from "../Blog";
+import { api } from "../../lib/axios";
+import { useParams } from "react-router-dom";
+import { relativeDateFormatter } from "../../utils/formatter";
+import Spinner from "../../components/Spinner";
+import PostContent from "../../components/PostContent";
 
 export const PostContaine = styled.div`
     width: 100%;
@@ -46,7 +52,15 @@ export const PostContaine = styled.div`
     }
 `;
 
+
+
+const userName = import.meta.env.VITE_GITHUB_USERNAME;
+const repoName = import.meta.env.VITE_GITHUB_REPONAME;
+
 export default function Post() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [postData, setPostData] = useState<PostProps>({} as PostProps);
+    const { id } = useParams();
 
     const [cursorX, setCursorX] = useState();
     const [cursorY, setCursorY] = useState();
@@ -55,12 +69,32 @@ export default function Post() {
         setCursorY(e.clientY)
     });
 
+    const getPostDetails = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const response = await api.get(`/repos/${userName}/${repoName}/issues/${id}`)
+            setPostData(response.data);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [postData])
+
+    useEffect(() => {
+        getPostDetails();
+    }, [])
+
+    const formattedDate = relativeDateFormatter(postData?.created_at);
+
     return (
-        <PostContaine>
+        <PostContaine >
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-circle"></div>
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-point"></div>
-            <PostHeader />
+            {isLoading ? <Spinner /> : (
+                <>
+                    <PostHeader title={postData.title} date={formattedDate} />
+                    {!isLoading && <PostContent content={postData.body}/>}
+                </>
+            )}
         </PostContaine>
-
     )
 }
