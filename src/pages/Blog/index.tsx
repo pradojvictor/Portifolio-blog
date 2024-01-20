@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components"
 import SearchInput from "../../components/Search";
-import Post from "../../components/Posts";
+import Posts from "../../components/Posts";
 import { api } from "../../lib/axios";
+import Spinner from "../../components/Spinner";
 
 export const BlogContaine = styled.div`
     width: 100%;
@@ -49,9 +50,13 @@ export const BlogContaine = styled.div`
     }
 `;
 export const TitleContaine = styled.div`
-    width: 15rem;
+    width: 40rem;
     height: 5rem;
     text-align: center;
+    margin-bottom: 1rem;
+    h1{
+        margin-bottom: 1rem; 
+    }
 
 `;
 export const InputContain = styled.div`
@@ -67,7 +72,7 @@ export const PostListContainer = styled.section`
     //mobile use flex
 `;
 
-const username = import.meta.env.VITE_GITHUB_USERNAME;
+const userName = import.meta.env.VITE_GITHUB_USERNAME;
 const repoName = import.meta.env.VITE_GITHUB_REPONAME;
 
 export interface PostProps {
@@ -97,7 +102,7 @@ export function Blog() {
     const getPosts = useCallback(async (query: string = "") => {
         try {
             setIsLoading(true);
-            const response = await api.get(`/search/issues?q=${query}%20repo:${username}/${repoName}`);
+            const response = await api.get(`/search/issues?q=${query}%20repo:${userName}/${repoName}`);
             setPosts(response.data.items);
         } finally {
             setIsLoading(false);
@@ -115,14 +120,18 @@ export function Blog() {
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-point"></div>
             <TitleContaine >
                 <h1>blog</h1>
-                <p>ola aqui e uma parte do fsfhfhfshfsfshf  jjjjjjjjjjjjjjjjj jjjjjjj fsfhssçilçllçkfjhfs</p>
+                <p>
+                    Hi, this is where I'm going to store everything I'm learning, why? Why a notebook
+                    is expensive is how I like to write everything down, it will be expensive for my pocket!
+                </p>
             </TitleContaine >
             <InputContain>
-                <SearchInput getposts={getPosts}/>
+                <SearchInput getposts={getPosts} />
             </InputContain>
-            <PostListContainer>
+            {isLoading ? <Spinner/> : (
+                <PostListContainer>
                 {posts.map((post) => (
-                    <Post
+                    <Posts
                         key={post.number}
                         title={post.title}
                         description={post.body}
@@ -133,6 +142,7 @@ export function Blog() {
                 ))}
 
             </PostListContainer>
+            ) }
         </BlogContaine>
     )
 }
