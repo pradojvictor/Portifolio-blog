@@ -53,7 +53,7 @@ interface PostsProps {
     numberURL: number,
 }
 
-export default function Post(props: PostsProps) {
+export default function Posts(props: PostsProps) {
 
     const formattedDate = relativeDateFormatter(props.date)
 
