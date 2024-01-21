@@ -50,12 +50,26 @@ export const BlogContaine = styled.div`
     }
 `;
 export const TitleContaine = styled.div`
-    width: 40rem;
-    height: 5rem;
+    width: 60rem;
+    height: 5em;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     h1{
         margin-bottom: 1rem; 
+        font-family: 'Cormorant Garamond', serif;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-family: 'Playfair Display', serif; 
+        color: orange;
+    }
+    p{
+        font-family: 'Cormorant Garamond', serif;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        color: #424242;
     }
 
 `;
@@ -68,7 +82,7 @@ export const PostListContainer = styled.section`
     grid-template-columns:  0.8fr 1.2fr 0.7fr 1.3fr;
     /* grid-template-rows: 2fr 3fr 1fr; */
     /* grid-template-rows: repeat(min-content, 1fr); */
-    gap: 2rem;
+    gap: 1rem;
     //mobile use flex
 `;
 
