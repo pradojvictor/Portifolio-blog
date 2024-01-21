@@ -48,8 +48,9 @@ export const HeaderPost = styled.section`
             display: flex;
             align-items: center;
             transition: 0.5s;
-            font-size:1.1rem;
+            font-size:1.5rem;
             font-weight:600;
+            font-family: 'Cormorant Garamond', serif;
     
             &:hover{
             color: orange;
