@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { relativeDateFormatter } from "../../utils/formatter";
 import Spinner from "../../components/Spinner";
 import PostContent from "../../components/PostContent";
+import { themeDefault } from "../../styles/themes/default";
 
 export const PostContaine = styled.div`
     width: 100%;
@@ -20,7 +21,39 @@ export const PostContaine = styled.div`
     gap: 2rem; //opcional
     padding: 2rem;
     align-items: center;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    background: ${({ toggle }) => toggle ? `${themeDefault.light.backgroundColor}` : `${themeDefault.dark.backgroundColor}`};
+    h1 {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorH1}` : `${themeDefault.dark.textColorH1}`};
+    }
+    h2, h3 {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorH2}` : `${themeDefault.dark.textColorH2}`};
+    }
+    h4 {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorH4}` : `${themeDefault.dark.textColorH4}`};
+    }
+    p {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorP}` : `${themeDefault.dark.textColorP}`};
+    }
+    li {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorLi}` : `${themeDefault.dark.textColorLi}`};
+    }
+    strong {
+        color: ${({toggle}) => toggle ? `${themeDefault.light.textColorStronge}` : `${themeDefault.dark.textColorStronge}`};
+    }
+    header {
+        .link-back {
+            color: ${({toggle}) => toggle ? `${themeDefault.light.textColorLink}` : `${themeDefault.dark.textColorLink}`};
+            &:hover {
+                color: ${({toggle}) => toggle ? `${themeDefault.light.textColorLinkHover}` : `${themeDefault.dark.textColorLinkHover}`};
+            }
+        }
+    }
+
+
+
+    
+    
     .curso-circle{
         position: fixed;
         top: 0;
@@ -85,12 +118,15 @@ export default function Post() {
 
     const formattedDate = relativeDateFormatter(postData?.created_at);
 
+    const [toggle, setToggle] = useState(true);
+
     return (
-        <PostContaine >
+        <PostContaine  toggle={toggle}>
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-circle"></div>
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-point"></div>
             {isLoading ? <Spinner /> : (
                 <>
+                    <button  onClick={() => setToggle(state => !state)}>mudar de cor</button>
                     <PostHeader title={postData.title} date={formattedDate} />
                     {!isLoading && <PostContent content={postData.body}/>}
                 </>
