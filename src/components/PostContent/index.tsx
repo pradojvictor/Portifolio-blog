@@ -69,7 +69,7 @@ const PostContainer = styled.section`
     blockquote{
         display:none;
     }
-    a{
+    a{  
         img{
             width: 8rem;
             height: 2rem;
