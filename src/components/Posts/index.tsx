@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 import { relativeDateFormatter } from "../../utils/formatter";
+import MarkDownDescription from "../MarkDownDescription";
 
 export const PostContainer = styled(Link)`
    width: 100%;
@@ -8,37 +9,35 @@ export const PostContainer = styled(Link)`
    background-color: #F9F4EC;
    border-bottom: 2px solid gray;
    transition: 0.4s;
+   overflow: hidden;
    &:hover{
     background-color: #E2DBCF;
    }
    .title-div{
     display: flex;
-    margin-bottom: 1.25rem;
+    margin-bottom: .5rem;
     strong{
         font-size: 2em;
-        font-weight: 600;
+        font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        font-family: 'Playfair Display', serif; 
+        text-transform:uppercase;
     }
    }
    .description-div{
-       p{
-           font-size: 0.9em;
-           overflow: hidden;
-           text-overflow: ellipsis;
-           display: -webkit-box;
-           -webkit-box-orient: vertical;
-           -webkit-line-clamp: 4;
-           margin-bottom: 2rem;
-       }
+   
+       
+       
     }
     span{
         width: max-content;
         font-size: 0.8rem;
         color: gray;
+        padding-left:.5rem;
     }
     .containe-div{
         height:85%;
@@ -64,7 +63,7 @@ export default function Posts(props: PostsProps) {
                     <strong>{props.title}</strong>
                 </div>
                 <div className="description-div">
-                    <p>{props.description}</p>
+                    <MarkDownDescription content={props.description} />
                 </div>
             </div>
             <span>{formattedDate}</span>
