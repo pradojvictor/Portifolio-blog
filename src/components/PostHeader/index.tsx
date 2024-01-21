@@ -9,7 +9,7 @@ export const HeaderPost = styled.section`
     align-items: center;
     justify-content: center;
 
-    h2{
+    h4{
         margin-bottom: 2rem;
         font-size: 3rem;
         font-weight: 600; 
@@ -75,9 +75,8 @@ export default function PostHeader(props: PostHeaderProps) {
         <HeaderPost>
             <header>
                 <Link redirect="/blog" name="return" classname="link-back"/>
-                <button> mudar de cor</button>
             </header>
-            <h2>{props.title}</h2>
+            <h4>{props.title}</h4>
             <div className="autor-div">
                 <img src="https://github.com/pradojvictor.png" />
                 <div>
