@@ -12,14 +12,10 @@ export const GlobalStyles = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
     }
     body, input, textarea, button {
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-        /* 
-        font-family: 'Bebas Neue', sans-serif;
+        /* font-family: 'Bebas Neue', sans-serif;
         font-family: 'Cormorant Garamond', serif;
         font-family: 'Playfair Display', serif; 
-        font-family: 'Poppins', sans-serif;
-        */
+        font-family: 'Poppins', sans-serif; */
     }
     ul {
         list-style: none;
