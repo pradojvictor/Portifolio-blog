@@ -19,7 +19,7 @@ export const PostContaine = styled.div`
     flex-direction: column;
     border-radius: 1rem;
     gap: 2rem; //opcional
-    padding: 2rem;
+    padding: 4rem;
     align-items: center;
     overflow-x: hidden;
     background: ${({ toggle }) => toggle ? `${themeDefault.light.backgroundColor}` : `${themeDefault.dark.backgroundColor}`};
@@ -49,11 +49,11 @@ export const PostContaine = styled.div`
             }
         }
     }
-
-
-
-    
-    
+    transition: 0.5s;
+    .button-theme{
+        border: none;
+        width: 5rem;
+    }
     .curso-circle{
         position: fixed;
         top: 0;
@@ -110,15 +110,18 @@ export default function Post() {
         } finally {
             setIsLoading(false);
         }
-    }, [postData])
+    }, [id])
 
     useEffect(() => {
         getPostDetails();
-    }, [])
+    }, [getPostDetails])
 
     const formattedDate = relativeDateFormatter(postData?.created_at);
 
     const [toggle, setToggle] = useState(true);
+    function hendleTheme() {
+        setToggle(toggle => !toggle)
+    }
 
     return (
         <PostContaine  toggle={toggle}>
@@ -126,8 +129,7 @@ export default function Post() {
             <div style={{ left: cursorX + "px", top: cursorY + "px" }} className="cursor curso-point"></div>
             {isLoading ? <Spinner /> : (
                 <>
-                    <button  onClick={() => setToggle(state => !state)}>mudar de cor</button>
-                    <PostHeader title={postData.title} date={formattedDate} />
+                    <PostHeader toogleClick={hendleTheme} title={postData.title} date={formattedDate} />
                     {!isLoading && <PostContent content={postData.body}/>}
                 </>
             )}
