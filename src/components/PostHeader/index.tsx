@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Link from "../Link";
+import ToogleButton from "../ToogleButtonTheme";
 
 export const HeaderPost = styled.section`
     height: 10rem;
@@ -68,6 +69,7 @@ interface PostHeaderProps {
     autor?: string,
     date: string,
     title: string,
+    toogleClick: () => void,
 }
 
 export default function PostHeader(props: PostHeaderProps) {
@@ -75,6 +77,7 @@ export default function PostHeader(props: PostHeaderProps) {
         <HeaderPost>
             <header>
                 <Link redirect="/blog" name="return" classname="link-back"/>
+                <ToogleButton toogleClick={props.toogleClick} />
             </header>
             <h4>{props.title}</h4>
             <div className="autor-div">
