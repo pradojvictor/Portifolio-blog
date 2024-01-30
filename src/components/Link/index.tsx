@@ -4,6 +4,7 @@ interface LinkProps {
     name?: string;
     redirect: string;
     classname?: string;
+    onClick?: () => void;
 }
 
 export default function Link(props: LinkProps) {
@@ -11,6 +12,7 @@ export default function Link(props: LinkProps) {
         <LinkRoute
             to={props.redirect}
             className={props.classname}
+            onClick={props.onClick}
         >
             {props.name}
         </LinkRoute>
