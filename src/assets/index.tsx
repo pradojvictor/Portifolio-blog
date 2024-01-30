@@ -1,6 +1,8 @@
 import image1 from "./imgs/img1.jpg"
 import image2 from "./imgs/img2.jpg"
 import image3 from "./imgs/img3.jpg"
+import icon1 from "./icons/icons-moon.png";
+import icon2 from "./icons/icons-sun.png"
 
 export const images = {
     image1,
@@ -8,5 +10,6 @@ export const images = {
     image3,
 }
 export const icons = {
-
+    icon1,
+    icon2,
 }
