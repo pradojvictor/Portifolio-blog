@@ -47,6 +47,11 @@ export const LayoutContainer = styled.div`
         pointer-events:none;
         transition: .2s;
     }
+
+    @media (max-width: 54rem) {
+        padding: 0 1rem;
+    }
+    //ajusta igual a minima tela
 `;
 
 export function DefaultLayout() {
