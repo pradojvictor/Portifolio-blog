@@ -105,7 +105,7 @@ export const ButtonHoveContaine = styled.div`
     
    
 `;
-export function ButtonHover() {
+export default function ButtonHover() {
 
 
     return (
