@@ -9,6 +9,20 @@ export const SliderContainer = styled.div`
     align-items: center;
     width: 41rem;
 
+
+*{
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display:none;
+}
+::-webkit-scrollbar-track {
+    display:none;
+}
+::-webkit-scrollbar-thumb {
+    display:none;
+}
+
     .button-slide {
         display: flex;
         flex-direction: column;
@@ -39,9 +53,6 @@ export const SliderContainer = styled.div`
         overflow-x: auto;
         scroll-behavior: smooth;
         margin: 0 1rem;
-        &::-webkit-scrollbar {
-            display: none;
-        }
     }
     .div-card {
         height: auto;
@@ -54,6 +65,7 @@ export const SliderContainer = styled.div`
         scroll-behavior: smooth;
         flex: none;
         margin-right: 1rem;
+        margin-bottom: .5rem;
         
         .div-info-containe {
             padding: 1rem 1rem;
@@ -209,6 +221,9 @@ export default function Slider() {
                         </div>
                     </div>
                 ))}
+                <div className="scrool">
+
+                </div>
             </div>
         </SliderContainer>
     )
