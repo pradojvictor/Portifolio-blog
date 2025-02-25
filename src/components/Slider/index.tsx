@@ -65,7 +65,6 @@ export const SliderContainer = styled.div`
         scroll-behavior: smooth;
         flex: none;
         margin-right: 1rem;
-        margin-bottom: .5rem;
         
         .div-info-containe {
             padding: 1rem 1rem;
