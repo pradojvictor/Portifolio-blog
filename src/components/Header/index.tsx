@@ -7,13 +7,14 @@ export const HeaderContainer = styled.header`
     background: transparent;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-right: 10rem;
 `;
 
 export function Header() {
     return(
         <HeaderContainer>
-            <h1>prado</h1>
+            <h1></h1>
             <Nav/>
         </HeaderContainer>
     )
