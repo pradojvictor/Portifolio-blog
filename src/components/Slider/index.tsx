@@ -119,6 +119,9 @@ export const SliderContainer = styled.div`
                     color: #ffffff;
                     width: 2.2rem;
                 }
+                svg:hover{
+                    color: orange;
+                }
             }
         }
         
