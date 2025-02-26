@@ -15,6 +15,17 @@ export const NavContainer = styled.nav`
     li {
         letter-spacing: 3px;
     }
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+
+    li:hover{
+        color: orange;
+        font-weight: 800;
+    }
+
 `;
 
 export default function Nav() {
