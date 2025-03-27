@@ -4,6 +4,7 @@ import { DefaultLayout } from "./layouts/DefaultLayout";
 import { Work } from "./pages/Work";
 import { Blog } from "./pages/Blog";
 import Post from "./pages/Post";
+import { Contact } from "./pages/Contact";
 
 export function Router() {
     return (
@@ -13,6 +14,7 @@ export function Router() {
                 <Route path="/work" element={<Work />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/post/:id" element={<Post />} />
+                <Route path="/contact" element={<Contact />}/>
             </Route>
         </Routes>
     )

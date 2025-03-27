@@ -10,6 +10,10 @@ import iconTelegran from "./icons/telegram.svg"
 import iconTwitter from "./icons/twitter.svg"
 import iconLinkedinalt from "./icons/linkedin.svg"
 import icontest from "./icons/teste.svg"
+import iconEmailContato from "./icons/icon_email.svg"
+import iconText01Contato from "./icons/icon_text-01.svg"
+import iconText02Contato from "./icons/icon_text-02.svg"
+import iconPerfilContato from "./icons/icon_perfil.svg"
 
 
 export const images = {
@@ -27,4 +31,8 @@ export const icons = {
     iconTelegran,
     iconTwitter,
     icontest,
+    iconEmailContato,
+    iconText01Contato,
+    iconText02Contato,
+    iconPerfilContato
 }
