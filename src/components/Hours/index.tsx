@@ -75,7 +75,7 @@ export const HoursContainer = styled.div`
     }
 `
 
-export default function Hours(){
+export default function Hours() {
 
     const [dataFormatada, setDataFormatada] = useState({
         dia: '',
@@ -91,8 +91,8 @@ export default function Hours(){
 
             const dia = String(data.getDate()).padStart(2, '0');
             const meses = [
-                'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-                'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
             ];
             const mes = meses[data.getMonth()];
 
@@ -115,9 +115,9 @@ export default function Hours(){
         return () => clearInterval(intervalo);
     }, []);
 
-    return(
+    return (
         <HoursContainer>
-         <div className="div-time">
+            <div className="div-time">
                 <div className="containe-time">
                     <div className="div-date">
                         <span className="date-day">{dataFormatada.dia}</span>

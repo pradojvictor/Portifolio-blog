@@ -121,11 +121,11 @@ export function Blog() {
         } finally {
             setIsLoading(false);
         }
-    }, [posts]);
+    }, []);
 
     useEffect(() => {
         getPosts();
-    }, [])
+    }, [getPosts])
 
 
     return (
